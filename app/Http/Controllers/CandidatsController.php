@@ -26,6 +26,19 @@ class CandidatsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nom' => ['required'],
+            'serie' => ['required'],
+            'situationFamiliale' => ['required'],
+            'nationalite' => ['required'],
+            'adresse' => ['required'],
+            'dateDeNaissance' => ['required'],
+            'lieuDeNaissance' => ['required'],
+            'postule' => ['required'],
+            'genre' => ['required'],
+            'annee' => ['required'],
+        ]);
+
         if(Candidat::create($request->all())){
             return response()->json([
                 "success" => "1",
@@ -53,6 +66,19 @@ class CandidatsController extends Controller
      */
     public function update(Request $request, Candidat $candidat)
     {
+        $request->validate([
+            'nom' => ['required'],
+            'serie' => ['required'],
+            'situationFamiliale' => ['required'],
+            'nationalite' => ['required'],
+            'adresse' => ['required'],
+            'dateDeNaissance' => ['required'],
+            'lieuDeNaissance' => ['required'],
+            'postule' => ['required'],
+            'genre' => ['required'],
+            'annee' => ['required'],
+        ]);
+        
         if($candidat->update($request->all())){
             return response()->json([
                 "succes" => "1"
