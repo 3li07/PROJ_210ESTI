@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CandidatsController;
+use App\Http\Controllers\PreparatoiresController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+Route::middleware(['cors'])->group(function (){
+    Route::apiResource('preparatoires',PreparatoiresController::class);
+    Route::apiResource('candidats',CandidatsController::class);
 });
