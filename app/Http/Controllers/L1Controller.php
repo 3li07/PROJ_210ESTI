@@ -70,7 +70,7 @@ class L1Controller extends Controller
     public function show(int $id)
     {
         $l1Model = L1Model::findOrFail($id);
-        return $data[] = [
+        return [
             'id' => $l1Model->id,
             'nom' => $l1Model->candidat->nom,
             'prenom' => $l1Model->candidat->prenom,
