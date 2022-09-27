@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         // \App\Models\Preparatoire::factory(10)->create();
         // \App\Models\Candidat::factory(10)->create();
         // \App\Models\L1Model::factory(10)->create();
+        \App\Models\L2Model::factory(10)->create();
     }
 }
