@@ -15,7 +15,7 @@ class CandidatsController extends Controller
      */
     public function index()
     {
-        return Candidat::orderbyDesc('id')->get();
+        return Candidat::orderby('id')->get();
     }
 
     /**
@@ -54,7 +54,44 @@ class CandidatsController extends Controller
      */
     public function show(Candidat $candidat)
     {
-        return $candidat;
+        return [
+            "id" => $candidat->id,
+            'nom' => $candidat->nom,
+            "prenom" => $candidat->prenom,
+            "serie" => $candidat->serie,
+            "nationalite" => $candidat->nationalite,
+            "situationFamiliale" => $candidat->situationFamiliale,
+            "contact" => $candidat->contact,
+            "nombreEnfant" => $candidat->nombreEnfant,
+            "adresse" => $candidat->adresse,
+            "tel1" => $candidat->tel1,
+            "tel2" => $candidat->tel2,
+            "tel3" => $candidat->tel3,
+            "email" => $candidat->email,
+            "dateDeNaissance" => $candidat->dateDeNaissance,
+            "lieuDeNaissance" => $candidat->lieuDeNaissance,
+            "postule" => $candidat->postule,
+            "genre" => $candidat->genre,
+            "concours" => $candidat->concours,
+            "entretien" => $candidat->entretien,
+            "status" => $candidat->status,
+            "anneeCandidature" => $candidat->annee,
+            "matricule" => $candidat->matricule,
+            "nomPere" => $candidat->nomPere,
+            "nomMere" => $candidat->nomMere,
+            "nomTuteur" => $candidat->nomTuteur,
+            "professionPere" => $candidat->professionPere,
+            "professionMere" => $candidat->professionMere,
+            "professionTuteur" => $candidat->professionTuteur,
+            "telPere" => $candidat->telPere,
+            "telMere" => $candidat->telMere,
+            "telTuteur" => $candidat->telTuteur,
+            "L1" => $candidat->l1,
+            "L2" => $candidat->l2,
+            "L3" => $candidat->l3,
+            "M1" => $candidat->m1,
+            "M2" => $candidat->m2,
+        ]; 
     }
 
     /**

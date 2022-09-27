@@ -18,7 +18,7 @@ class CreateL1ModelsTable extends Migration
             $table->integer('annee');
             $table->string('groupe');
             $table->boolean('status')->default(1)->nullable();
-            $table->foreignId('candidat_id')->constrained();
+            $table->foreignId('candidat_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
