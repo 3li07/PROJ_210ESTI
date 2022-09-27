@@ -8,6 +8,8 @@ use App\Http\Controllers\L3Controller;
 use App\Http\Controllers\M1Controller;
 use App\Http\Controllers\M2Controller;
 use App\Http\Controllers\CandidatsController;
+use App\Http\Controllers\ConcoursController;
+use App\Http\Controllers\DecisionController;
 use App\Http\Controllers\PreparatoiresController;
 
 /*
@@ -32,4 +34,8 @@ Route::middleware(['cors'])->group(function (){
     Route::apiResource('L3',L3Controller::class);
     Route::apiResource('M1',M1Controller::class);
     Route::apiResource('M2',M2Controller::class);
+    Route::put('candidats/concours/present/{id}',[ConcoursController::class,'autorise']);
+    Route::put('candidats/concours/abscent/{id}',[ConcoursController::class,'refused']);
+    Route::put('candidats/decision/{id}/validate',[DecisionController::class,'autorise']);
+    Route::put('candidats/decision/{id}/refused',[DecisionController::class,'refused']);
 });

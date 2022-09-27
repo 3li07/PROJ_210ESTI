@@ -74,6 +74,7 @@ class CandidatsController extends Controller
             "genre" => $candidat->genre,
             "concours" => $candidat->concours,
             "entretien" => $candidat->entretien,
+            "firstClasse" => $candidat->firstClasse,
             "status" => $candidat->status,
             "anneeCandidature" => $candidat->annee,
             "matricule" => $candidat->matricule,
