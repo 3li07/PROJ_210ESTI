@@ -6,6 +6,7 @@ use App\Models\L1Model;
 use App\Models\L2Model;
 use App\Models\L3Model;
 use App\Models\M1Model;
+use App\Models\M2Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -29,5 +30,9 @@ class Candidat extends Model
     public function m1()
     {
         return $this->hasMany(M1Model::class);
+    }
+    public function m2()
+    {
+        return $this->hasMany(M2Model::class);
     }
 }
