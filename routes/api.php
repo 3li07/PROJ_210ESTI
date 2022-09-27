@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\L1Controller;
 use App\Http\Controllers\L2Controller;
+use App\Http\Controllers\L3Controller;
 use App\Http\Controllers\CandidatsController;
 use App\Http\Controllers\PreparatoiresController;
 
@@ -26,4 +27,5 @@ Route::middleware(['cors'])->group(function (){
     Route::apiResource('candidats',CandidatsController::class);
     Route::apiResource('L1',L1Controller::class);
     Route::apiResource('L2',L2Controller::class);
+    Route::apiResource('L3',L3Controller::class);
 });
