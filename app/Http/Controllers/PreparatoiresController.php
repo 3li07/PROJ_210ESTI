@@ -27,11 +27,14 @@ class PreparatoiresController extends Controller
     {
         $request->validate([
             'nom' => ['required'],
+            'contact' => ['required'],
+            'mois' => ['required'],
         ]);
 
         Preparatoire::create([
             'nom' => $request->nom,
             'prenom' => $request->prenom,
+            'mois' => $request->mois,
             'contact' => $request->contact,
         ]);
 
@@ -62,16 +65,19 @@ class PreparatoiresController extends Controller
     {
         $request->validate([
             'nom' => ['required'],
+            'contact' => ['required'],
+            'mois' => ['required'],
         ]);
 
         $preparatoire->update([
             'nom' => $request->nom,
             'prenom' => $request->prenom,
+            'mois' => $request->mois,
             'contact' => $request->contact,
         ]);
 
         return response()->json([
-            "success" => 'Updated'
+            "success" => '1'
         ], 200);
     }
 
@@ -86,7 +92,7 @@ class PreparatoiresController extends Controller
         $preparatoire->delete();
 
         return response()->json([
-            "success" => 'deleted'
+            "success" => '1'
         ], 200);
     }
 }

@@ -28,13 +28,9 @@ class CandidatsController extends Controller
     {
         if(Candidat::create($request->all())){
             return response()->json([
-                "success" => "Candidat cree",
+                "success" => "1",
             ]);
-        } else {
-            return response()->json([
-                'error' => "Erreur",
-            ], 200);
-        }
+        } 
     }
 
     /**
@@ -59,7 +55,7 @@ class CandidatsController extends Controller
     {
         if($candidat->update($request->all())){
             return response()->json([
-                "succes" => "Donne mise a jour"
+                "succes" => "1"
             ], 200);
         }
     }
@@ -74,7 +70,7 @@ class CandidatsController extends Controller
     {
         if($candidat->delete()){
             return response()->json([
-                "success" => "Data deleted"
+                "success" => "1"
             ], 200);
         }
     }

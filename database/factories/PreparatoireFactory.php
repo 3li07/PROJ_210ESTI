@@ -15,6 +15,7 @@ class PreparatoireFactory extends Factory
     {
         return [
             'nom' => $this->faker->lastname(),
+            'mois' => $this->faker->randomElement([9,11]),
             'prenom' => $this->faker->firstname(),
             'contact' => $this->faker->e164PhoneNumber(),
         ];

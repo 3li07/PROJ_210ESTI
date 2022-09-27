@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePreparatoiresTable extends Migration
+class CreateL1ModelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class CreatePreparatoiresTable extends Migration
      */
     public function up()
     {
-        Schema::create('preparatoires', function (Blueprint $table) {
+        Schema::create('l1_models', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->integer('mois');
-            $table->string('prenom')->nullable();
-            $table->bigInteger('contact')->nullable();
-            $table->string('profile',255)->default('images/default.png')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ class CreatePreparatoiresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('preparatoires');
+        Schema::dropIfExists('l1_models');
     }
 }
