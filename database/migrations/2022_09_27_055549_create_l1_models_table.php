@@ -15,6 +15,10 @@ class CreateL1ModelsTable extends Migration
     {
         Schema::create('l1_models', function (Blueprint $table) {
             $table->id();
+            $table->integer('annee');
+            $table->string('groupe');
+            $table->boolean('status')->default(1)->nullable();
+            $table->foreignId('candidat_id')->constrained();
             $table->timestamps();
         });
     }
