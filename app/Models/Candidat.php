@@ -7,6 +7,7 @@ use App\Models\L2Model;
 use App\Models\L3Model;
 use App\Models\M1Model;
 use App\Models\M2Model;
+use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -41,5 +42,14 @@ class Candidat extends Model
         $annee = $this->anneeCandidature - 1;
 
         return $annee.'-'.$this->anneeCandidature;
+    }
+    public function getageAttribute()
+    {
+        $date1 = new DateTime($this->dateDeNaissance);
+        $date2 = new DateTime('now');
+
+        $diff = $date1->diff($date2);
+
+        return $diff->y;
     }
 }

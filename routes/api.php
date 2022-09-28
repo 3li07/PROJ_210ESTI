@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdmissionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\L1Controller;
@@ -35,9 +36,12 @@ Route::middleware(['cors'])->group(function (){
     Route::apiResource('L3',L3Controller::class);
     Route::apiResource('M1',M1Controller::class);
     Route::apiResource('M2',M2Controller::class);
-    Route::put('candidats/concours/present/{id}',[ConcoursController::class,'autorise']);
-    Route::put('candidats/concours/abscent/{id}',[ConcoursController::class,'refused']);
-    Route::put('candidats/decision/{id}/validate',[DecisionController::class,'autorise']);
-    Route::put('candidats/decision/{id}/refused',[DecisionController::class,'refused']);
+    Route::put('candidats/{id}/concours/present',[ConcoursController::class,'autorise']);
+    Route::put('candidats/{id}/concours/abscent',[ConcoursController::class,'refused']);
+    Route::put('candidats/{id}/decision/validate',[DecisionController::class,'autorise']);
+    Route::put('candidats/{id}/decision/refused',[DecisionController::class,'refused']);
     Route::put('candidats/{id}/inscription',[InscriptionController::class,'inscription']);
+    Route::put('candidats/{id}/admis',[AdmissionController::class,'admis']);
+    Route::put('candidats/{id}/abandon',[AdmissionController::class,'abandon']);
+    Route::put('candidats/{id}/redouble',[AdmissionController::class,'redouble']);
 });
