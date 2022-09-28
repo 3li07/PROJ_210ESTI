@@ -23,7 +23,7 @@ class InscriptionController extends Controller
         $candidat = Candidat::findOrFail($id);
         $table = strtolower($candidat->classe)."_models";
         DB::table($table)->insert([
-            'annee' => $candidat->annee,
+            'annee' => $candidat->anneeCandidature,
             'candidat_id' => $candidat->id,
             'groupe' => $groupe,
         ]); 

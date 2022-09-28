@@ -39,7 +39,7 @@ class CandidatsController extends Controller
         ]);
 
         $candidat = Candidat::create($request->all());   
-        $candidat->update(['anneeCandidature' => date('Y')]);
+        $candidat->update(['anneeCandidature' => date('Y') + 1]);
         return response()->json(['success' => 1],200);
     }
 
@@ -73,7 +73,7 @@ class CandidatsController extends Controller
             "entretien" => $candidat->entretien,
             "classe" => $candidat->classe,
             "status" => $candidat->status,
-            "anneeCandidature" => $candidat->annee,
+            "anneeCandidature" => $candidat->anneeCandidature,
             "matricule" => $candidat->matricule,
             "nomPere" => $candidat->nomPere,
             "nomMere" => $candidat->nomMere,
