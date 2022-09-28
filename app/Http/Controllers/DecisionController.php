@@ -15,6 +15,8 @@ class DecisionController extends Controller
      */
     public function autorise(Request $request, int $id)
     {
+        //uri = api/candidats/decision/{}/validate?classe=..
+
         $classe = $request->query('classe');
         Candidat::findOrFail($id)->update([
             'entretien' => 1,

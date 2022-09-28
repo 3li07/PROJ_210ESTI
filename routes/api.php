@@ -10,6 +10,7 @@ use App\Http\Controllers\M2Controller;
 use App\Http\Controllers\CandidatsController;
 use App\Http\Controllers\ConcoursController;
 use App\Http\Controllers\DecisionController;
+use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\PreparatoiresController;
 
 /*
@@ -38,4 +39,5 @@ Route::middleware(['cors'])->group(function (){
     Route::put('candidats/concours/abscent/{id}',[ConcoursController::class,'refused']);
     Route::put('candidats/decision/{id}/validate',[DecisionController::class,'autorise']);
     Route::put('candidats/decision/{id}/refused',[DecisionController::class,'refused']);
+    Route::put('candidats/{id}/inscription',[InscriptionController::class,'inscription']);
 });
