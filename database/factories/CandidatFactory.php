@@ -30,7 +30,7 @@ class CandidatFactory extends Factory
             'lieuDeNaissance' => $this->faker->state() ,
             'postule' => $this->faker->randomElement(['L1', 'L2', 'L3', 'M1', 'M2']) ,
             'genre' => $this->faker->randomElement(['M', 'F']) ,
-            'annee' => 2022,
+            'anneeCandidature' => 2022,
             'matricule' => $this->faker->unique()->numberBetween(1,1000) ,
             'nomPere'=> $this->faker->name('male'),
             'nomMere'=> $this->faker->name('female'),

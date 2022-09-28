@@ -34,7 +34,7 @@ class CreateCandidatsTable extends Migration
             $table->boolean('concours')->nullable();
             $table->boolean('entretien')->nullable();
             $table->boolean('status')->nullable();
-            $table->integer('annee');
+            $table->integer('anneeCandidature')->nullable();
             $table->string('matricule')->nullable();
             $table->string('nomPere')->nullable();
             $table->string('nomMere')->nullable();

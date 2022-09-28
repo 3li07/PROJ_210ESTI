@@ -36,14 +36,11 @@ class CandidatsController extends Controller
             'lieuDeNaissance' => ['required'],
             'postule' => ['required'],
             'genre' => ['required'],
-            'annee' => ['required'],
         ]);
 
-        if(Candidat::create($request->all())){
-            return response()->json([
-                "success" => "1",
-            ]);
-        } 
+        $candidat = Candidat::create($request->all());   
+        $candidat->update(['anneeCandidature' => date('Y')]);
+        return response()->json(['success' => 1],200);
     }
 
     /**
@@ -74,7 +71,7 @@ class CandidatsController extends Controller
             "genre" => $candidat->genre,
             "concours" => $candidat->concours,
             "entretien" => $candidat->entretien,
-            "firstClasse" => $candidat->firstClasse,
+            "classe" => $candidat->classe,
             "status" => $candidat->status,
             "anneeCandidature" => $candidat->annee,
             "matricule" => $candidat->matricule,
@@ -114,7 +111,6 @@ class CandidatsController extends Controller
             'lieuDeNaissance' => ['required'],
             'postule' => ['required'],
             'genre' => ['required'],
-            'annee' => ['required'],
         ]);
         
         if($candidat->update($request->all())){

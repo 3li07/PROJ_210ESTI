@@ -35,4 +35,11 @@ class Candidat extends Model
     {
         return $this->hasMany(M2Model::class);
     }
+
+    public function getanneeUniversitaireAttribute()
+    {
+        $annee = $this->annee + 1;
+
+        return $this->annee.'-'.$annee;
+    }
 }

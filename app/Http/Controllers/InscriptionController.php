@@ -20,9 +20,9 @@ class InscriptionController extends Controller
         $groupe = $request->query('groupe');
 
         Candidat::findOrFail($id)->update(['status' => 1]);
-        $candidat = Candidat::findOrFail($id)->first();
-        $table = strtolower($candidat->firstClasse)."_models";
-        DB::table($table)->create([
+        $candidat = Candidat::findOrFail($id);
+        $table = strtolower($candidat->classe)."_models";
+        DB::table($table)->insert([
             'annee' => $candidat->annee,
             'candidat_id' => $candidat->id,
             'groupe' => $groupe,
