@@ -18,9 +18,11 @@ class InscriptionController extends Controller
     {
         //uri = api/candidats/{}/inscription?groupe=..
         $groupe = $request->query('groupe');
-
-        Candidat::findOrFail($id)->update(['status' => 1]);
         $candidat = Candidat::findOrFail($id);
+        $candidat->update([
+            'status' => 1,
+            'matricule' => MatriculeController::matricule($candidat),
+        ]);
         $table = strtolower($candidat->classe)."_models";
         DB::table($table)->insert([
             'annee' => $candidat->anneeCandidature,

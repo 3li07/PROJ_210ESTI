@@ -28,17 +28,22 @@ class CandidatsController extends Controller
     {
         $request->validate([
             'nom' => ['required'],
-            'serie' => ['required'],
-            'situationFamiliale' => ['required'],
-            'nationalite' => ['required'],
-            'adresse' => ['required'],
             'dateDeNaissance' => ['required'],
             'lieuDeNaissance' => ['required'],
+            'nationalite' => ['required'],
+            'situationFamiliale' => ['required'],
+            'adresse' => ['required'],
+            'contact' => ['required'],
+            'serie' => ['required'],
             'postule' => ['required'],
             'genre' => ['required'],
+            'selectedDiplome' => ['required'],
         ]);
 
-        $candidat = Candidat::create($request->all());   
+        $candidat = Candidat::create([
+            $request->except('selectedDiplome'),
+
+        ]);   
         $candidat->update(['anneeCandidature' => date('Y') + 1]);
         return response()->json(['success' => 1],200);
     }
