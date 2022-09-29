@@ -16,7 +16,11 @@ class CreatePreparatoiresTable extends Migration
         Schema::create('preparatoires', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->integer('mois');
+            $table->string('email');
+            $table->string('niveau');
+            $table->string('serie');
+            $table->string('adresse');
+            $table->string('genre');
             $table->string('prenom')->nullable();
             $table->bigInteger('contact')->nullable();
             $table->string('profile',255)->default('images/default.png')->nullable();

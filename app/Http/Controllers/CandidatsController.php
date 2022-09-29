@@ -87,6 +87,7 @@ class CandidatsController extends Controller
             "telTuteur" => $candidat->telTuteur,
             "finish" => $candidat->finish,
             "abandon" => $candidat->abandon,
+            "finishL3" => $candidat->finishL3,
             "L1" => $candidat->l1,
             "L2" => $candidat->l2,
             "L3" => $candidat->l3,

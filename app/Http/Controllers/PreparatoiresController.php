@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Preparatoire;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PreparatoiresController extends Controller
 {
@@ -25,22 +26,25 @@ class PreparatoiresController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $vs = Validator::make($request->all(),[
             'nom' => ['required'],
-            'contact' => ['required'],
-            'mois' => ['required'],
+            'email' => ['required', 'email'],
+            'serie' => ['required'],
+            'niveau' => ['required'],
+            'adresse' => ['required'],
+            'contact' => ['required','numeric'],
+            'genre' => ['required'],
         ]);
-
-        Preparatoire::create([
-            'nom' => $request->nom,
-            'prenom' => $request->prenom,
-            'mois' => $request->mois,
-            'contact' => $request->contact,
-        ]);
-
-        return response()->json([
-            "success" => '1'
-        ], 200);
+        if($vs->fails()){
+            return response()->json([
+                'validate_err' => $vs->messages(),
+            ]);
+        } else {
+            Preparatoire::create($request->all());
+            return response()->json([
+                'success' => 'Inscription reussie',
+            ], 200);
+        }
     }
 
     /**

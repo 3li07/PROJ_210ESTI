@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Preparatoire extends Model
 {
     use HasFactory;
+    protected $table = 'preparatoires';
     protected $guarded = [];
 }
