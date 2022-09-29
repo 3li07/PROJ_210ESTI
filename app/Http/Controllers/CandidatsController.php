@@ -67,9 +67,7 @@ class CandidatsController extends Controller
             "contact" => $candidat->contact,
             "nombreEnfant" => $candidat->nombreEnfant,
             "adresse" => $candidat->adresse,
-            "tel1" => $candidat->tel1,
-            "tel2" => $candidat->tel2,
-            "tel3" => $candidat->tel3,
+
             "email" => $candidat->email,
             "dateDeNaissance" => $candidat->dateDeNaissance,
             "lieuDeNaissance" => $candidat->lieuDeNaissance,
