@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Candidat extends Model
 {
     use HasFactory;
+    protected $table = 'candidats';
     protected $guarded = [];
 
     public function l1()

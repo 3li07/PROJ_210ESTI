@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFinishToCandidatsTable extends Migration
+class AddColonneToPreparatoiresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddFinishToCandidatsTable extends Migration
      */
     public function up()
     {
-        Schema::table('candidats', function (Blueprint $table) {
-            $table->boolean('finish')->default(0)->nullable();
-            $table->boolean('abandon')->default(0)->nullable();
+        Schema::table('preparatoires', function (Blueprint $table) {
+            $table->string('bordereauDeDonnee');
         });
     }
 
@@ -26,7 +25,7 @@ class AddFinishToCandidatsTable extends Migration
      */
     public function down()
     {
-        Schema::table('candidats', function (Blueprint $table) {
+        Schema::table('preparatoires', function (Blueprint $table) {
             //
         });
     }

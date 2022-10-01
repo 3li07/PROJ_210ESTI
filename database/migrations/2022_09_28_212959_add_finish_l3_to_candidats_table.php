@@ -14,7 +14,7 @@ class AddFinishL3ToCandidatsTable extends Migration
     public function up()
     {
         Schema::table('candidats', function (Blueprint $table) {
-            $table->boolean('finishL3')->default(0);
+            $table->boolean('finishL3')->default(0)->nullable();
         });
     }
 

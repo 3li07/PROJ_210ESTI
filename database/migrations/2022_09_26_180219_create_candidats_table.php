@@ -15,22 +15,22 @@ class CreateCandidatsTable extends Migration
     {
         Schema::create('candidats', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->string('nom')->nullable();
             $table->string('prenom')->nullable();
-            $table->string('serie');
-            $table->string('nationalite');
-            $table->string('situationFamiliale');
+            $table->string('serie')->nullable();
+            $table->string('nationalite')->nullable();
+            $table->string('situationFamiliale')->nullable();
             $table->bigInteger('contact')->nullable();
-            $table->integer('nombreEnfant')->default(0);
-            $table->string('adresse');
+            $table->integer('nombreEnfant')->default(0)->nullable();
+            $table->string('adresse')->nullable();
             $table->bigInteger('tel1')->nullable();
             $table->bigInteger('tel2')->nullable();
             $table->bigInteger('tel3')->nullable();
             $table->string('email')->unique()->nullable();
-            $table->string('dateDeNaissance');
-            $table->string('lieuDeNaissance');
-            $table->string('postule');
-            $table->string('genre', 1);
+            $table->string('dateDeNaissance')->nullable();
+            $table->string('lieuDeNaissance')->nullable();
+            $table->string('postule')->nullable();
+            $table->string('genre', 1)->nullable();
             $table->boolean('concours')->nullable();
             $table->boolean('entretien')->nullable();
             $table->boolean('status')->nullable();

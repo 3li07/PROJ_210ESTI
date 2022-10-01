@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Candidat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CandidatsController extends Controller
 {
@@ -26,7 +27,7 @@ class CandidatsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $vs = Validator::make($request->all(),[
             'nom' => ['required'],
             'dateDeNaissance' => ['required'],
             'lieuDeNaissance' => ['required'],
@@ -36,16 +37,92 @@ class CandidatsController extends Controller
             'contact' => ['required'],
             'serie' => ['required'],
             'postule' => ['required'],
-            'genre' => ['required'],
-            'selectedDiplome' => ['required'],
-        ]);
+            'genre' => ['required'],            
+         ]);
+        if($vs->fails()){
+            return response()->json([
+                'validate_err' => $vs->messages(),
+            ]);
+        } else {
 
-        $candidat = Candidat::create([
-            $request->except('selectedDiplome'),
+            if($request->hasFile('selectedDiplome')){
+                $path = 'public/dossier/Diplome/'.$request->nom;
+                $image_name = $request->file('selectedDiplome')->getClientOriginalName();
+                $diplome = $request->file('selectedDiplome')->storeAs($path,$image_name);
+            }
 
-        ]);   
-        $candidat->update(['anneeCandidature' => date('Y') + 1]);
-        return response()->json(['success' => 1],200);
+            if($request->hasFile('selectedReleveDeNoteBacc')){
+                $path = 'public/dossier/rlvBacc/'.$request->nom;
+                $image_name = $request->file('selectedReleveDeNoteBacc')->getClientOriginalName();
+                $rlvBacc = $request->file('selectedReleveDeNoteBacc')->storeAs($path,$image_name);
+            }
+
+
+            if($request->hasFile('selectedReleveDeNoteSeconde')){
+                $path = 'public/dossier/rlvSeconde/'.$request->nom;
+                $image_name = $request->file('selectedReleveDeNoteSeconde')->getClientOriginalName();
+                $rlvSeconde = $request->file('selectedReleveDeNoteSeconde')->storeAs($path,$image_name);
+            }
+
+            if($request->hasFile('selectedReleveDeNotePremiere')){
+                $path = 'public/dossier/rlvPremiere/'.$request->nom;
+                $image_name = $request->file('selectedReleveDeNotePremiere')->getClientOriginalName();
+                $rlvPremiere = $request->file('selectedReleveDeNotePremiere')->storeAs($path,$image_name);
+            }
+
+            if($request->hasFile('selectedReleveDeNoteTerminale')){
+                $path = 'public/dossier/rlvTerminale/'.$request->nom;
+                $image_name = $request->file('selectedReleveDeNoteTerminale')->getClientOriginalName();
+                $rlvTerminale = $request->file('selectedReleveDeNoteTerminale')->storeAs($path,$image_name);
+            }
+
+            if($request->hasFile('certificatDeResidence')){
+                $path = 'public/dossier/certificatDeResidence/'.$request->nom;
+                $image_name = $request->file('certificatDeResidence')->getClientOriginalName();
+                $certificatDeResidence = $request->file('certificatDeResidence')->storeAs($path,$image_name);
+            }
+
+            if($request->hasFile('selectedPhoto')){
+                $path = 'public/dossier/selectedPhoto/'.$request->nom;
+                $image_name = $request->file('selectedPhoto')->getClientOriginalName();
+                $selectedPhoto = $request->file('selectedPhoto')->storeAs($path,$image_name);
+            }
+
+            if($request->hasFile('selectedCINorCIS')){
+                $path = 'public/dossier/selectedCINorCIS/'.$request->nom;
+                $image_name = $request->file('selectedCINorCIS')->getClientOriginalName();
+                $selectedCINorCIS = $request->file('selectedCINorCIS')->storeAs($path,$image_name);
+            }
+
+            if($request->hasFile('cv')){
+                $path = 'public/dossier/cv/'.$request->nom;
+                $image_name = $request->file('cv')->getClientOriginalName();
+                $cv = $request->file('cv')->storeAs($path,$image_name);
+            }
+
+            if($request->hasFile('bordereauEsti')){
+                $path = 'public/dossier/bordereauEsti/'.$request->nom;
+                $image_name = $request->file('bordereauEsti')->getClientOriginalName();
+                $bordereauEsti = $request->file('bordereauEsti')->storeAs($path,$image_name);
+            }
+            $candidat = Candidat::create($request->all());
+
+            $candidat->update([
+                'anneeCandidature' => date('Y') + 1,
+                'selectedDiplome'=> $diplome,
+                'selectedReleveDeNoteBacc'=> $rlvBacc,
+                'selectedReleveDeNoteSeconde'=> $rlvSeconde,
+                'selectedReleveDeNotePremiere'=> $rlvPremiere,
+                'selectedReleveDeNoteTerminale'=> $rlvTerminale,
+                'certificatDeResidance'=> $certificatDeResidence,
+                'selectedPhoto'=> $selectedPhoto,
+                'selectedCINorCIS'=> $selectedCINorCIS,
+                'cv'=> $cv,
+                'bordereauEsti'=> $bordereauEsti,
+            ]);
+            return response()->json(['success' => 1],200);
+        }
+        
     }
 
     /**
@@ -67,7 +144,9 @@ class CandidatsController extends Controller
             "contact" => $candidat->contact,
             "nombreEnfant" => $candidat->nombreEnfant,
             "adresse" => $candidat->adresse,
-
+            "tel1" => $candidat->tel1,
+            "tel2" => $candidat->tel2,
+            "tel3" => $candidat->tel3,
             "email" => $candidat->email,
             "dateDeNaissance" => $candidat->dateDeNaissance,
             "lieuDeNaissance" => $candidat->lieuDeNaissance,
@@ -96,7 +175,7 @@ class CandidatsController extends Controller
             "L3" => $candidat->l3,
             "M1" => $candidat->m1,
             "M2" => $candidat->m2,
-        ]; 
+        ];
     }
 
     /**
@@ -119,7 +198,7 @@ class CandidatsController extends Controller
             'postule' => ['required'],
             'genre' => ['required'],
         ]);
-        
+
         if($candidat->update($request->all())){
             return response()->json([
                 "succes" => "1"

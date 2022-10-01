@@ -26,6 +26,8 @@ class PreparatoiresController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $vs = Validator::make($request->all(),[
             'nom' => ['required'],
             'email' => ['required', 'email'],
@@ -34,13 +36,21 @@ class PreparatoiresController extends Controller
             'adresse' => ['required'],
             'contact' => ['required','numeric'],
             'genre' => ['required'],
+            'bordereauDeDonnee' => ['file']
         ]);
         if($vs->fails()){
             return response()->json([
                 'validate_err' => $vs->messages(),
             ]);
         } else {
-            Preparatoire::create($request->all());
+            if($request->hasFile('bordereauDeDonnee')){
+                $path = 'public/dossier/'.$request->nom;
+                $image_name = $request->file('bordereauDeDonnee')->getClientOriginalName();
+                $chemin = $request->file('bordereauDeDonnee')->storeAs($path,$image_name);
+            }
+
+            $prep = Preparatoire::create($request->all());
+            $prep->update(['bordereauDeDonnee' => $chemin]);
             return response()->json([
                 'success' => 'Inscription reussie',
             ], 200);

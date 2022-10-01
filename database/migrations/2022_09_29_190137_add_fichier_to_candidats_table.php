@@ -14,7 +14,7 @@ class AddFichierToCandidatsTable extends Migration
     public function up()
     {
         Schema::table('candidats', function (Blueprint $table) {
-            $table->string('selectedDiplome');
+            $table->string('selectedDiplome')->nullable();
         });
     }
 
