@@ -29,6 +29,7 @@ class CandidatsController extends Controller
     {
         $vs = Validator::make($request->all(),[
             'nom' => ['required'],
+            'email' => ['unique:candidats'],
             'dateDeNaissance' => ['required'],
             'lieuDeNaissance' => ['required'],
             'nationalite' => ['required'],
@@ -44,6 +45,16 @@ class CandidatsController extends Controller
                 'validate_err' => $vs->messages(),
             ]);
         } else {
+            $diplome = null;
+            $rlvBacc = null;
+            $rlvSeconde = null;
+            $rlvPremiere = null;
+            $rlvTerminale = null;
+            $certificatDeResidence = null;
+            $selectedPhoto = null;
+            $selectedCINorCIS = null;
+            $cv = null;
+            $bordereauEsti = null;
 
             if($request->hasFile('selectedDiplome')){
                 $path = 'public/dossier/Diplome/'.$request->nom;

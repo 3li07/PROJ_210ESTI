@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class L1Model extends Model
 {
     use HasFactory;
+    protected $table = 'l1_models';
     protected $guarded = [];
     public function candidat()
     {

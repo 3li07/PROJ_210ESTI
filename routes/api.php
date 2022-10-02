@@ -10,6 +10,7 @@ use App\Http\Controllers\M1Controller;
 use App\Http\Controllers\M2Controller;
 use App\Http\Controllers\CandidatsController;
 use App\Http\Controllers\ConcoursController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DecisionController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\PreparatoiresController;
@@ -36,6 +37,7 @@ Route::middleware(['cors'])->group(function (){
     Route::apiResource('L3',L3Controller::class);
     Route::apiResource('M1',M1Controller::class);
     Route::apiResource('M2',M2Controller::class);
+    Route::get('dashboard/',[DashboardController::class,'index']);
     Route::put('candidats/{id}/concours/present',[ConcoursController::class,'autorise']);
     Route::put('candidats/{id}/concours/abscent',[ConcoursController::class,'refused']);
     Route::put('candidats/{id}/decision/validate',[DecisionController::class,'autorise']);

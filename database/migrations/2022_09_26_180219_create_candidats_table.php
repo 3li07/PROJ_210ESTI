@@ -23,10 +23,7 @@ class CreateCandidatsTable extends Migration
             $table->bigInteger('contact')->nullable();
             $table->integer('nombreEnfant')->default(0)->nullable();
             $table->string('adresse')->nullable();
-            $table->bigInteger('tel1')->nullable();
-            $table->bigInteger('tel2')->nullable();
-            $table->bigInteger('tel3')->nullable();
-            $table->string('email')->unique()->nullable();
+            $table->string('email')->nullable();
             $table->string('dateDeNaissance')->nullable();
             $table->string('lieuDeNaissance')->nullable();
             $table->string('postule')->nullable();
